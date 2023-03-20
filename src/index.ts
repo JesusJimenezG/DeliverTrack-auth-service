@@ -2,13 +2,16 @@ import express from 'express';
 import config from '../config';
 
 const app = express();
+const PORT = config.api.port;
+const HOST = config.api.host;
 
 app.use(express.json());
 
-app.get("/ping", (_, res) => {
-    res.send("pong");
+app.get('/ping', (_, res) => {
+    res.send('pong');
 });
 
-app.listen(config.api.port, () => {
-    console.log(`Listening http://localhost:${config.api.port}`);
+app.listen(PORT, HOST, () => {
+    console.log(`Listening http://${HOST}:${PORT}`);
+    console.log(`name: ${process.env.NAME}`);
 });
