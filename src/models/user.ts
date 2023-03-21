@@ -2,7 +2,7 @@ import { User as PrismaUser } from '@prisma/client';
 
 import prisma from '../services/prisma';
 
-const createUser = async (user: PrismaUser): Promise<PrismaUser> => {
+const create = async (user: PrismaUser): Promise<PrismaUser> => {
     return await prisma.user.create({
         data: {
             email: user.email,
@@ -12,22 +12,30 @@ const createUser = async (user: PrismaUser): Promise<PrismaUser> => {
     });
 };
 
-const getUserById = async (id: number): Promise<PrismaUser | null> => {
+const getById = async (id: number): Promise<PrismaUser | null> => {
     return await prisma.user.findUnique({ where: { id } });
 };
 
-const getUserByEmail = async (email: string): Promise<PrismaUser | null> => {
+const getByEmail = async (email: string): Promise<PrismaUser | null> => {
     return await prisma.user.findUnique({ where: { email } });
 };
 
-const getUsers = async (): Promise<PrismaUser[]> => {
+const getAll = async (): Promise<PrismaUser[]> => {
     return await prisma.user.findMany();
 };
 
-const updateUserName = async (
-    id: number,
-    name: string
-): Promise<PrismaUser> => {
+const update = async (id: number, user: PrismaUser): Promise<PrismaUser> => {
+    return await prisma.user.update({
+        where: { id },
+        data: {
+            email: user.email,
+            password: user.password,
+            name: user.name
+        }
+    });
+};
+
+const updateName = async (id: number, name: string): Promise<PrismaUser> => {
     return await prisma.user.update({
         where: { id },
         data: {
@@ -36,10 +44,7 @@ const updateUserName = async (
     });
 };
 
-const updateUserEmail = async (
-    id: number,
-    email: string
-): Promise<PrismaUser> => {
+const updateEmail = async (id: number, email: string): Promise<PrismaUser> => {
     return await prisma.user.update({
         where: { id },
         data: {
@@ -48,7 +53,7 @@ const updateUserEmail = async (
     });
 };
 
-const updateUserPassword = async (
+const updatePassword = async (
     id: number,
     password: string
 ): Promise<PrismaUser> => {
@@ -60,17 +65,18 @@ const updateUserPassword = async (
     });
 };
 
-const deleteUser = async (id: number): Promise<PrismaUser> => {
+const removeById = async (id: number): Promise<PrismaUser> => {
     return await prisma.user.delete({ where: { id } });
 };
 
 export default {
-    createUser,
-    getUsers,
-    getUserById,
-    getUserByEmail,
-    updateUserName,
-    updateUserEmail,
-    updateUserPassword,
-    deleteUser
+    create,
+    getAll,
+    getById,
+    getByEmail,
+    update,
+    updateName,
+    updateEmail,
+    updatePassword,
+    removeById
 };

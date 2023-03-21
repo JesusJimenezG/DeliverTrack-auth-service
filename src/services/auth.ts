@@ -8,7 +8,7 @@ const loginUser = async (credentials: AuthCredentials): Promise<PrismaUser> => {
     const { email, password } = credentials;
     userValidator(email, password);
 
-    const user = await UserModel.getUserByEmail(email);
+    const user = await UserModel.getByEmail(email);
     if (!user) {
         throw new Error('User not found');
     }

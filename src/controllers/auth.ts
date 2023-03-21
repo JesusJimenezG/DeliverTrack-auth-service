@@ -9,7 +9,7 @@ const login = async (req: Request, res: Response) => {
 
         response.success(res, user.toString(), 200);
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         response.error(res, error, 500);
     }
 };

@@ -1,11 +1,10 @@
 import express from 'express';
-import auth from '../controllers/auth';
+import userRoutes from './user';
+import authRoutes from './auth';
 
 const router = express.Router();
 
-router.post('/login', auth.login);
-// router.get('/token', (_, res) => {
-//     res.send(JSON.stringify({ message: 'token' }));
-// });
+router.use('/', authRoutes);
+router.use('/user', userRoutes);
 
 export default router;
