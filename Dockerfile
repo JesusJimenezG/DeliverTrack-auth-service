@@ -7,6 +7,13 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
 
+# Copy Prisma schema
+COPY prisma/schema.prisma ./prisma/schema.prisma
+RUN npx prisma generate
+
+# Copy .env
+COPY .env.dev .env.dev
+
 # Bundle app source
 COPY . .
 

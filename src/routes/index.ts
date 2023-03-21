@@ -1,12 +1,11 @@
 import express from 'express';
+import auth from '../controllers/auth';
 
 const router = express.Router();
 
-router.get('/api/auth/login', (_, res) => {
-    res.send(JSON.stringify({ message: 'login' }));
-});
-router.get('api/auth/token', (_, res) => {
-    res.send(JSON.stringify({ message: 'token' }));
-});
+router.post('/login', auth.login);
+// router.get('/token', (_, res) => {
+//     res.send(JSON.stringify({ message: 'token' }));
+// });
 
 export default router;
