@@ -1,4 +1,4 @@
-# Authentication Service for the PERN (PostgreSQL, Express, Redis, Node) stack
+# Authentication Service for the PERN (PostgreSQL, Express, Redis, Node) backend project
 
 ## Overview
 

@@ -1,17 +1,26 @@
 import express from 'express';
-import config from '../config';
+import config from './config/config';
+import router from './routes';
 
 const app = express();
-const PORT = config.api.port;
-const HOST = config.api.host;
 
 app.use(express.json());
+app.use(router);
 
-app.get('/ping', (_, res) => {
-    res.send('pong');
-});
-
+// Start the server
+const PORT = config.api.port;
+const HOST = config.api.host;
 app.listen(PORT, HOST, () => {
     console.log(`Listening http://${HOST}:${PORT}`);
-    console.log(`name: ${process.env.NAME}`);
 });
+
+// Graceful shutdown
+const handleShutdown = async () => {
+    console.log('Shutting down server...');
+    //   await prisma.$disconnect();
+    //   await new Promise((resolve) => redisClient.quit(() => resolve(null)));
+    process.exit(0);
+};
+
+process.on('SIGINT', handleShutdown);
+process.on('SIGTERM', handleShutdown);
