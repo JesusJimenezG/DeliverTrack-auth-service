@@ -8,6 +8,7 @@
     "db:migrate": "npx prisma migrate dev",
     "docker:db:console": "docker-compose exec postgres psql -h localhost -U postgres -d pern-user-db",
     "docker:db:migrate": "docker-compose exec auth-service npm run db:migrate",
+    "docker:prisma:generate": "docker-compose exec auth-service npx prisma generate",
     "start": "node build/app.js",
     "docker:rebuild": "docker-compose down && docker-compose rm -f auth-service && docker-compose build auth-service && docker-compose up -d",
     "tsc": "tsc",
@@ -18,8 +19,10 @@
   "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "5.0.0",
+    "@types/cookie-parser": "1.4.3",
     "@types/cors": "2.8.13",
     "@types/express": "4.17.17",
+    "@types/jsonwebtoken": "9.0.1",
     "@types/node": "18.15.4",
     "@typescript-eslint/eslint-plugin": "5.56.0",
     "@typescript-eslint/parser": "5.56.0",
@@ -31,7 +34,9 @@
   "dependencies": {
     "@prisma/client": "4.11.0",
     "bcrypt": "5.1.0",
+    "cookie-parser": "1.4.6",
     "cors": "2.8.5",
-    "express": "4.18.2"
+    "express": "4.18.2",
+    "jsonwebtoken": "9.0.0"
   }
 }

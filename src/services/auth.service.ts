@@ -1,8 +1,9 @@
-import bcrypt from 'bcrypt';
 import { User as PrismaUser } from '@prisma/client';
 import { AuthCredentials } from '../interfaces/auth.interface';
-import UserModel from '../models/user';
+import UserModel from '../models/user.model';
 import { userValidator } from '../utils/validators';
+import { compare } from '../utils/bcrypt.handler';
+import { generateToken } from '../utils/jwt.handler';
 
 const loginUser = async (credentials: AuthCredentials): Promise<PrismaUser> => {
     const { email, password } = credentials;
@@ -13,10 +14,14 @@ const loginUser = async (credentials: AuthCredentials): Promise<PrismaUser> => {
         throw new Error('User not found');
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await compare(password, user.password);
     if (!passwordMatch) {
         throw new Error('Incorrect password');
     }
+
+    // const { token, fingerprint } = generateToken(user);
+
+    // await UserModel.updateFingerprint(user.id, fingerprint);
 
     return user;
 };

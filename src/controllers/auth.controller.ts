@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import response from './network';
-import AuthService from '../services/auth';
+import response from '../utils/network.handler';
+import AuthService from '../services/auth.service';
 
 const login = async (req: Request, res: Response) => {
     try {

@@ -2,7 +2,7 @@ import express from 'express';
 import config from './config/config';
 import router from './routes';
 import cors from 'cors';
-import prisma from './services/prisma';
+import prisma from './client/prisma.client';
 
 const app = express();
 app.use(cors());

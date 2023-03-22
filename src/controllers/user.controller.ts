@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import ResponseHandler from './network';
-import UserService from '../services/user';
+import ResponseHandler from '../utils/network.handler';
+import UserService from '../services/user.service';
 
 const create = async (req: Request, res: Response) => {
     try {
