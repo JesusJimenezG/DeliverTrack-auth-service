@@ -3,21 +3,16 @@ import { User as PrismaUser } from '@prisma/client';
 import UserModel from '../models/user';
 import { userValidator } from '../utils/validators';
 
-/**
- *
- * @param user { email: string, password: string, name: string}
- * @returns {PrismaUser}
- */
 const registerUser = async (user: PrismaUser): Promise<PrismaUser> => {
     // Validate user data
     userValidator(user.email, user.password);
 
-    console.log(`user before hashing password: ${user}`);
+    console.log(`user before hashing password: ${JSON.stringify(user)}`);
     // Hash password
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
 
-    console.log(`user after password hashed: ${user}`);
+    console.log(`user after password hashed: ${JSON.stringify(user)}`);
 
     return await UserModel.create(user);
 };

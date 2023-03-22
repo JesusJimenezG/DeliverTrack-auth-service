@@ -2,34 +2,35 @@ import { Request, Response } from 'express';
 import ResponseHandler from './network';
 import UserService from '../services/user';
 
-const create = (req: Request, res: Response) => {
+const create = async (req: Request, res: Response) => {
     try {
         const data = req.body;
-        const user = UserService.registerUser(data);
+        const user = await UserService.registerUser(data);
+        console.log(`user: ${user}`);
 
         ResponseHandler.success(res, user.toString(), 200);
     } catch (error) {
-        // console.error(error);
+        console.error(`type of error: ${typeof error}`);
+
+        ResponseHandler.error(res, error);
+    }
+};
+
+const retrieve = async (req: Request, res: Response) => {
+    try {
+        const data = req.body;
+        const user = await UserService.getUserById(data);
+
+        ResponseHandler.success(res, user?.toString(), 200);
+    } catch (error) {
         ResponseHandler.error(res, error, 500);
     }
 };
 
-const retrieve = (req: Request, res: Response) => {
-    try {
-        const data = req.body;
-        const user = UserService.getUserById(data);
-
-        ResponseHandler.success(res, user.toString(), 200);
-    } catch (error) {
-        // console.error(error);
-        ResponseHandler.error(res, error, 500);
-    }
-};
-
-const update = (req: Request, res: Response) => {
+const update = async (req: Request, res: Response) => {
     try {
         const { id, name } = req.body;
-        const user = UserService.updateUserName(Number(id), name);
+        const user = await UserService.updateUserName(Number(id), name);
 
         ResponseHandler.success(res, user.toString(), 200);
     } catch (error) {
@@ -38,10 +39,10 @@ const update = (req: Request, res: Response) => {
     }
 };
 
-const remove = (req: Request, res: Response) => {
+const remove = async (req: Request, res: Response) => {
     try {
         const { id } = req.body;
-        const user = UserService.deleteUser(Number(id));
+        const user = await UserService.deleteUser(Number(id));
 
         ResponseHandler.success(res, user.toString(), 200);
     } catch (error) {

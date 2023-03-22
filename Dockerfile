@@ -12,7 +12,7 @@ COPY prisma/schema.prisma ./prisma/schema.prisma
 RUN npx prisma generate
 
 # Copy .env
-COPY .env.dev .env.dev
+COPY .env .env
 
 # Bundle app source
 COPY . .
