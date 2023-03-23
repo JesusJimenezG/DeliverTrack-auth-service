@@ -12,6 +12,15 @@ const create = async (
         }
     });
 };
+
+const getByUserId = async (
+    user_id: number
+): Promise<UserFingerprint | null> => {
+    return await prisma.fingerprint.findUnique({
+        where: { user_id }
+    });
+};
+
 const update = async (
     fingerprint_id: number,
     fingerprint: string
@@ -26,5 +35,6 @@ const update = async (
 
 export default {
     create,
+    getByUserId,
     update
 };

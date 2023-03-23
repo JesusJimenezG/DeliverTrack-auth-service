@@ -1,29 +1,16 @@
 import jwt from 'jsonwebtoken';
-import crypto from 'crypto';
-import { User } from '@prisma/client';
 import config from '../config/config';
-import { encrypt } from './bcrypt.handler';
+import { JwtPayload, Token } from '../interfaces/auth.interface';
 
-const generateToken = async (payload: User) => {
-    const fingerprint = crypto.randomBytes(20).toString('hex');
-    const hashedFingerprint = await encrypt(fingerprint);
+const SECRET = config.secret.jwt_secret;
 
-    const token = jwt.sign(
-        {
-            user: {
-                id: payload.user_id,
-                email: payload.email,
-                fingerprint: hashedFingerprint
-            }
-        },
-        config.secret.jwt_secret
-    );
-
-    return { token, fingerprint };
+const generateToken = (hash: string): Token => {
+    const token = jwt.sign({ fingerprint: hash }, SECRET);
+    return { token };
 };
 
-const verifyToken = (token: string) => {
-    const decoded = jwt.verify(token, config.secret.jwt_secret);
+const verifyToken = (token: string): JwtPayload => {
+    const decoded = jwt.verify(token, SECRET) as JwtPayload;
     return decoded;
 };
 

@@ -6,22 +6,19 @@ const create = async (req: Request, res: Response) => {
     try {
         const data = req.body;
         const user = await UserService.registerUser(data);
-        console.log(`user: ${user}`);
 
-        ResponseHandler.success(res, user.toString(), 200);
+        ResponseHandler.success(res, user, 200);
     } catch (error) {
-        console.error(`type of error: ${typeof error}`);
-
         ResponseHandler.error(res, error);
     }
 };
 
 const retrieve = async (req: Request, res: Response) => {
     try {
-        const data = req.body;
-        const user = await UserService.getUserById(data);
+        const { user_id } = req.body;
+        const user = await UserService.getUserById(user_id);
 
-        ResponseHandler.success(res, user?.toString(), 200);
+        ResponseHandler.success(res, user, 200);
     } catch (error) {
         ResponseHandler.error(res, error, 500);
     }
@@ -29,12 +26,11 @@ const retrieve = async (req: Request, res: Response) => {
 
 const update = async (req: Request, res: Response) => {
     try {
-        const { id, name } = req.body;
-        const user = await UserService.updateUserName(Number(id), name);
+        const data = req.body;
+        const user = await UserService.updateUserDetails(data);
 
-        ResponseHandler.success(res, user.toString(), 200);
+        ResponseHandler.success(res, user, 200);
     } catch (error) {
-        // console.error(error);
         ResponseHandler.error(res, error, 500);
     }
 };
@@ -44,9 +40,8 @@ const remove = async (req: Request, res: Response) => {
         const { id } = req.body;
         const user = await UserService.deleteUser(Number(id));
 
-        ResponseHandler.success(res, user.toString(), 200);
+        ResponseHandler.success(res, user, 200);
     } catch (error) {
-        // console.error(error);
         ResponseHandler.error(res, error, 500);
     }
 };

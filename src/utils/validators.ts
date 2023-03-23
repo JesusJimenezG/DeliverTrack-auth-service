@@ -1,14 +1,17 @@
-export const userValidator = (email?: string, password?: string): boolean => {
-    if (!emailValidator(email)) {
+export const userValidate = (
+    email?: string,
+    password?: string | null
+): boolean => {
+    if (!emailValidate(email)) {
         throw new Error('Invalid email');
     }
-    if (!passwordValidator(password)) {
+    if (!passwordValidate(password)) {
         throw new Error('Password is required');
     }
     return true;
 };
 
-export const emailValidator = (email?: string): boolean => {
+export const emailValidate = (email?: string): boolean => {
     if (!email) {
         throw new Error('Email is required');
     }
@@ -16,7 +19,7 @@ export const emailValidator = (email?: string): boolean => {
     return emailRegex.test(email);
 };
 
-export const passwordValidator = (password?: string): boolean => {
+export const passwordValidate = (password?: string | null): boolean => {
     if (!password) {
         throw new Error('Password is required');
     }

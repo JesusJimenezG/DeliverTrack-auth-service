@@ -9,8 +9,9 @@
     "docker:db:console": "docker-compose exec postgres psql -h localhost -U postgres -d pern-user-db",
     "docker:db:migrate": "docker-compose exec auth-service npm run db:migrate",
     "docker:prisma:generate": "docker-compose exec auth-service npx prisma generate",
-    "start": "node build/app.js",
     "docker:rebuild": "docker-compose down && docker-compose rm -f auth-service && docker-compose build auth-service && docker-compose up -d",
+    "generate": "npx prisma generate",
+    "start": "node build/app.js",
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

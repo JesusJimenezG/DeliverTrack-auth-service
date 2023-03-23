@@ -3,9 +3,11 @@ import config from './config/config';
 import router from './routes';
 import cors from 'cors';
 import prisma from './client/prisma.client';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
