@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package*.json ./
+COPY session-authentication-middleware-1.0.0.tgz ./
 RUN npm install
 
 # Copy Prisma schema
@@ -17,5 +18,5 @@ COPY .env .env
 # Bundle app source
 COPY . .
 
-EXPOSE 8080
+EXPOSE 4000
 CMD [ "npm", "run", "dev" ]
