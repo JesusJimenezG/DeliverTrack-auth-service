@@ -1,13 +1,16 @@
 import { Request, Response } from 'express';
 import ResponseHandler from '../utils/network.handler';
 import AuthService from '../services/auth.service';
-// import { generateRandomString, hashString } from '../utils/encrypt.handler';
 import {
     generateRandomString,
     hashString
-} from 'session-authentication-middleware/utils/encrypt.handler';
-// import { generateToken } from '../utils/jwt.handler';
-import { generateToken } from 'session-authentication-middleware/utils/jwt.handler';
+} from '../../../session-authentication-middleware/utils/encrypt.handler';
+// import {
+// generateRandomString,
+// hashString
+// } from 'session-authentication-middleware/utils/encrypt.handler';
+import { generateToken } from '../../../session-authentication-middleware/utils/jwt.handler';
+// import { generateToken } from 'session-authentication-middleware/utils/jwt.handler';
 import config from '../config/config';
 
 const jwt_token = config.secret.jwt_secret;
@@ -44,8 +47,8 @@ const addTokenToResponse = (res: Response): string => {
     // Create the JWT token with the hashed random string as the user context
     const { token } = generateToken(hash, jwt_token);
 
-    // Add the token to the response as a Bearer token
     return token;
+    // Add the token to the response as a Bearer token
     // res.setHeader('Authorization', `Bearer ${token}`);
 };
 

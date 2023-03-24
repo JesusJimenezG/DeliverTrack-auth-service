@@ -1,8 +1,8 @@
 import express from 'express';
 import UserController from '../controllers/user.controller';
 // import validateToken from '../middleware/session';
-// import validateToken from '../../../session-authentication-middleware/middleware/session';
-import validateToken from 'session-authentication-middleware';
+import validateToken from '../../../session-authentication-middleware/middleware/session';
+// import validateToken from 'session-authentication-middleware';
 import config from '../config/config';
 
 const router = express.Router();
