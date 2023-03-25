@@ -1,7 +1,7 @@
 import { AuthCredentials } from '../interfaces/auth.interface';
 import UserModel from '../models/user.model';
 import { userValidate } from '../utils/validators';
-import { decryptPassword } from '../utils/encrypt.handler';
+import { EncrypHandler } from 'session-authentication-middleware';
 
 const validateCredentials = async (credentials: AuthCredentials) => {
     const { email, password } = credentials;
@@ -12,7 +12,10 @@ const validateCredentials = async (credentials: AuthCredentials) => {
         throw new Error('User not found');
     }
 
-    const passwordMatch = await decryptPassword(password, user.password);
+    const passwordMatch = await EncrypHandler.decryptPassword(
+        password,
+        user.password
+    );
     if (!passwordMatch) {
         throw new Error('Incorrect password');
     }

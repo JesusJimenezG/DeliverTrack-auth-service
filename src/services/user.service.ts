@@ -1,7 +1,7 @@
 import { User as PrismaUser } from '@prisma/client';
 import UserModel from '../models/user.model';
 import { userValidate } from '../utils/validators';
-import { encryptPassword } from '../utils/encrypt.handler';
+import { EncrypHandler } from 'session-authentication-middleware';
 import { User } from '../interfaces/user.interface';
 import { cleanedUser } from '../utils/user.handler';
 
@@ -10,7 +10,9 @@ const registerUser = async (user: PrismaUser): Promise<PrismaUser> => {
     userValidate(user.email, user.password);
 
     // Hash password
-    const hashedPassword = await encryptPassword(user.password as string);
+    const hashedPassword = await EncrypHandler.encryptPassword(
+        user.password as string
+    );
     user.password = hashedPassword;
 
     return await UserModel.create(user);
