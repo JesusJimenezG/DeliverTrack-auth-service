@@ -1,4 +1,4 @@
-# Authentication Service for the PERN (PostgreSQL, Express, Redis, Node) backend project
+# Authentication Service for the NERP (Node.js, Express, Redis, PostgreSQL) backend project
 
 ## Overview
 
