@@ -4,7 +4,7 @@
   "description": "Auth microservice for the project",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/app.ts",
+    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/index.ts",
     "db:migrate": "npx prisma migrate dev",
     "docker:db:console": "docker-compose exec postgres psql -h localhost -U postgres -d pern-user-db",
     "docker:db:migrate": "docker-compose exec auth-service npm run db:migrate",
@@ -12,7 +12,7 @@
     "docker:rebuild": "docker-compose down && docker-compose rm -f auth-service && docker-compose build auth-service && docker-compose up -d",
     "generate": "npx prisma generate",
     "lint": "eslint --ext .ts src",
-    "start": "node build/app.js",
+    "start": "node dist/index.js",
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

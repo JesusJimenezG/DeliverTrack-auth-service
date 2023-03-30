@@ -6,7 +6,7 @@ import {
     generateRandomString
 } from 'session-authentication-middleware/utils/encrypt.handler';
 import { generateToken } from 'session-authentication-middleware/utils/jwt.handler';
-import config from '../config/config';
+import config from '../../config/config';
 
 const jwt_token = config.secret.jwt_secret;
 

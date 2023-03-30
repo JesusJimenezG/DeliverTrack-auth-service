@@ -1,4 +1,4 @@
-import { User } from '../interfaces/user.interface';
+import { User } from '../app/interfaces/user.interface';
 
 export const cleanedUser = (user: User | null): User | null => {
     if (!user) return null;

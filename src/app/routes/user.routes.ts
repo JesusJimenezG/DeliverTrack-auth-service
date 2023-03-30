@@ -1,9 +1,7 @@
 import express from 'express';
-import UserController from '../controllers/user.controller';
-// import validateToken from '../middleware/session';
-// import validateToken from '../../../session-authentication-middleware/middleware/session';
 import { MiddlewareSession } from 'session-authentication-middleware';
-import config from '../config/config';
+import config from '../../config/config';
+import UserController from '../controller/user.controller';
 
 const router = express.Router();
 const jwt_token = config.secret.jwt_secret;
