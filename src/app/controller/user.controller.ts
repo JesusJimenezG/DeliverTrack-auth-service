@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import ResponseHandler from 'session-authentication-middleware/utils/network.handler';
+import ResponseHandler from 'delivertrack-middlewares/utils/network.handler';
 import UserService from '../services/user.service';
 
 const create = async (req: Request, res: Response) => {

@@ -1,8 +1,8 @@
 {
-  "name": "auth-service",
+  "name": "delivertrack-auth-service",
   "version": "1.0.0",
   "description": "Auth microservice for the project",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/index.ts",
     "db:migrate": "npx prisma migrate dev",
@@ -38,8 +38,8 @@
     "bcrypt": "5.1.0",
     "cookie-parser": "1.4.6",
     "cors": "2.8.5",
+    "delivertrack-middlewares": "file:delivertrack-middlewares-0.0.1.tgz",
     "express": "4.18.2",
-    "jsonwebtoken": "9.0.0",
-    "session-authentication-middleware": "file:session-authentication-middleware-1.0.0.tgz"
+    "jsonwebtoken": "9.0.0"
   }
 }

@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import ResponseHandler from 'session-authentication-middleware/utils/network.handler';
+import ResponseHandler from 'delivertrack-middlewares/utils/network.handler';
 import AuthService from '../services/auth.service';
 import {
     hashString,
     generateRandomString
-} from 'session-authentication-middleware/utils/encrypt.handler';
-import { generateToken } from 'session-authentication-middleware/utils/jwt.handler';
+} from 'delivertrack-middlewares/utils/encrypt.handler';
+import { generateToken } from 'delivertrack-middlewares/utils/jwt.handler';
 import config from '../../config/config';
 
 const jwt_token = config.secret.jwt_secret;

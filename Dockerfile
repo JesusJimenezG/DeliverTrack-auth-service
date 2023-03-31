@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package*.json ./
-COPY session-authentication-middleware-1.0.0.tgz ./
+COPY delivertrack-middlewares-0.0.1.tgz ./
 RUN npm install
 
 # Copy Prisma schema

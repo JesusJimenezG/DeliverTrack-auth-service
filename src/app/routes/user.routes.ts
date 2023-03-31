@@ -1,5 +1,5 @@
 import express from 'express';
-import { MiddlewareSession } from 'session-authentication-middleware';
+import { MiddlewareSession } from 'delivertrack-middlewares';
 import config from '../../config/config';
 import UserController from '../controller/user.controller';
 

@@ -1,7 +1,7 @@
 import { AuthCredentials } from '../interfaces/auth.interface';
 import UserModel from '../models/user.model';
 import { userValidate } from '../../utils/validators';
-import { EncrypHandler } from 'session-authentication-middleware';
+import { EncrypHandler } from 'delivertrack-middlewares';
 
 const validateCredentials = async (credentials: AuthCredentials) => {
     const { email, password } = credentials;

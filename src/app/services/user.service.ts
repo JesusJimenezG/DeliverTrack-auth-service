@@ -1,7 +1,7 @@
 import { User as PrismaUser } from '@prisma/client';
 import UserModel from '../models/user.model';
 import { userValidate } from '../../utils/validators';
-import { EncrypHandler } from 'session-authentication-middleware';
+import { EncrypHandler } from 'delivertrack-middlewares';
 import { User } from '../interfaces/user.interface';
 import { cleanedUser } from '../../utils/user.handler';
 

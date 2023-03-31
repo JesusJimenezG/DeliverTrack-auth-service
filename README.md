@@ -1,8 +1,8 @@
-# Authentication Service for the NERP (Node.js, Express, Redis, PostgreSQL) backend project
+# DeliverTrack authentication microservice
 
 ## Overview
 
-This is a simple authentication service that uses JWT tokens to authenticate users. It is built using the PERN (PostgreSQL, Express, Redis, Node) stack.
+This is a simple authentication service that uses JWT tokens to authenticate users. It is built with Node.js, Express, Redis, PostgreSQL and Prisma.
 
 ## Configuration
 
@@ -22,13 +22,21 @@ Build the docker image with the `docker-compose.yml` build file at the project r
 
 ## API
 
-### POST /api/auth/login
-
-#### Request
+### `POST` /api/auth/login
 
 ```json
 {
     "email": "user@example.com",
     "password": "password"
+}
+```
+
+### `POST` /api/auth/register
+
+```json
+{
+    "email": "user@example.com",
+    "password": "password",
+    "name": "User Name"
 }
 ```
