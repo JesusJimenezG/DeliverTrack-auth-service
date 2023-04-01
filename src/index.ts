@@ -8,8 +8,8 @@ const app = createApp();
 prisma.$connect();
 
 // Start the server
-const PORT = config.api.port;
-const HOST = config.api.host;
+const PORT = config.server.port;
+const HOST = config.server.host;
 const server = app.listen(PORT, HOST, () => {
     console.info(
         `🪪  Authentication service started at: http://${HOST}:${PORT}`
